@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next-Gen Financial Controlling | Kunal Agarwal</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#0f172a',       // Deep midnight blue
+                        panel: '#1e293b',      // Slate panels
+                        panelLight: '#334155',
+                        teal: '#14b8a6',       // Electric teal highlights
+                        col1: '#C084FC',       // Purple (Strategic)
+                        col2: '#2DD4BF',       // Teal (Automation - matches teal)
+                        col3: '#60A5FA',       // Blue (Budget)
+                        accentYellow: '#FACC15',
+                        orangeAlert: '#F97316'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Roboto', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #0f172a; 
+            overflow-x: hidden; 
+            /* Global zoom for standard laptops */
+            zoom: 0.9; 
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+        
+        /* Modal Transition Animations */
+        .modal-enter { opacity: 0; transform: scale(0.95); transition: all 0.3s ease-out; }
+        .modal-enter-active { opacity: 1; transform: scale(1); }
+        .modal-exit { opacity: 1; transform: scale(1); transition: all 0.2s ease-in; }
+        .modal-exit-active { opacity: 0; transform: scale(0.95); }
+    </style>
+</head>
+<body class="w-full flex flex-col items-center text-slate-300 min-h-screen">
+
+    <!-- ========================================== -->
+    <!-- MAIN LANDING VIEW -->
+    <!-- ========================================== -->
+    <div id="main-content" class="max-w-[1600px] w-full margin-auto p-4 flex flex-col min-h-screen">
+        
+        <!-- COMPACT HEADER SECTION -->
+        <header class="flex flex-row items-center gap-6 mb-4 bg-panel border border-slate-700 p-5 rounded-xl shadow-lg relative overflow-hidden shrink-0">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-teal/5 rounded-full blur-3xl -mr-10 -mt-10"></div>
+            
+            <!-- Left-Aligned Profile Placeholder/Image -->
+            <div class="relative w-24 h-24 rounded-full flex items-center justify-center bg-navy border-2 border-slate-600 shadow-xl overflow-hidden shrink-0 z-10">
+                <!-- Fallback to initials if image is missing on the hosted link -->
+                <span class="absolute text-2xl font-bold text-slate-500">KA</span>
+                <img src="Kunal_2.PNG" onerror="this.style.display='none'" alt="Kunal Agarwal" class="absolute inset-0 w-full h-full object-cover z-20">
+            </div>
+
+            <div class="flex-1 z-10">
+                <div class="flex items-center gap-4">
+                    <h1 class="text-3xl font-extrabold text-white tracking-tight">Kunal Agarwal</h1>
+                    <h3 class="text-slate-300 text-xs font-semibold tracking-wide flex items-center gap-1.5">
+                        <span class="bg-panelLight px-2 py-0.5 rounded">CPA (US)</span> &bull; 
+                        <span class="bg-panelLight px-2 py-0.5 rounded">CA</span> &bull; 
+                        <span class="bg-panelLight px-2 py-0.5 rounded">ACCA Dip IFR</span> &bull; 
+                        <span class="bg-panelLight px-2 py-0.5 rounded">CS</span>
+                    </h3>
+                </div>
+                
+                <div class="flex items-center gap-4 mt-2">
+                    <p class="text-teal text-sm font-semibold tracking-wide">
+                        Next-GEN FP&amp;A | Controllership <span class="text-slate-500 mx-2">|</span> Process Standardization &amp; Finance Transformation
+                    </p>
+                    <a href="https://www.linkedin.com/in/cpa-kunalagarwal" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1 bg-[#0A66C2] rounded text-xs font-semibold text-white hover:bg-[#004182] transition-colors shadow">
+                        <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        LinkedIn
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- COMPACT 3-COLUMN BENTO GRID -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4 flex-1">
+            
+            <!-- COLUMN 1: Strategic Finance -->
+            <div class="flex flex-col gap-3">
+                <div class="bg-panel border border-slate-700 border-t-2 border-t-col1 rounded p-2.5 flex items-center gap-2 shadow shrink-0">
+                    <div class="bg-col1/10 p-1.5 rounded text-col1"><i data-lucide="box" class="w-4 h-4"></i></div>
+                    <h2 class="text-xs font-bold text-slate-100 uppercase tracking-wider">Strategic Finance &amp; Business Transformation</h2>
+                </div>
+
+                <!-- PROJECT 7: SAC Rollout (Connected to Modal) -->
+                <div class="bg-panel border border-slate-700 rounded-lg p-3 flex gap-3 relative hover:border-col1/50 transition-colors group flex-1">
+                    <div class="w-[35%] flex flex-col justify-center border-r border-slate-700/50 pr-2">
+                        <span class="text-3xl font-extrabold text-white tracking-tight leading-none">~<span class="text-col1">15</span>%</span>
+                        <span class="text-[9px] text-col1/90 font-bold uppercase tracking-wide mt-1 leading-tight">Faster Forecast<br>Cycles</span>
+                    </div>
+                    <div class="w-[65%] flex flex-col justify-between pl-1">
+                        <div>
+                            <h3 class="text-xs font-bold text-white mb-1 leading-tight">Enterprise SAC Forecasting Rollout</h3>
+                            <p class="text-[10px] text-slate-400 leading-snug line-clamp-2 mb-2">Spearheaded the enterprise rollout of the SAP Analytics Cloud forecasting tool with Deloitte.</p>
+                        </div>
+                        <button onclick="openModal('sac-rollout')" class="w-fit text-[10px] bg-col1/10 text-col1 font-semibold px-2.5 py-1 rounded flex items-center gap-1 hover:bg-col1 hover:text-white transition-colors">
+                            View Full Workflow <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PROJECT 8 -->
+                <div class="bg-panel border border-slate-700 rounded-lg p-3 flex gap-3 relative hover:border-col1/50 transition-colors group flex-1">
+                    <div class="w-[35%] flex flex-col justify-center border-r border-slate-700/50 pr-2">
+                        <span class="text-3xl font-extrabold text-white tracking-tight leading-none">~<span class="text-col1">1.1</span>%</span>
+                        <span class="text-[9px] text-col1/90 font-bold uppercase tracking-wide mt-1 leading-tight">Revenue Leakage<br>Eliminated</span>
+                    </div>
+                    <div class="w-[65%] flex flex-col justify-between pl-1">
+                        <div>
+                            <h3 class="text-xs font-bold text-white mb-1 leading-tight">CSO Revenue Leakage Elimination</h3>
+                            <p class="text-[10px] text-slate-400 leading-snug line-clamp-2 mb-2">Developed an API-integrated resource deployment dashboard tracking employee utilization.</p>
+                        </div>
+                        <button onclick="openModal('placeholder')" class="w-fit text-[10px] bg-col1/10 text-col1 font-semibold px-2.5 py-1 rounded flex items-center gap-1 hover:bg-col1 hover:text-white transition-colors">
+                            View Full Workflow <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PROJECT 9 -->
+                <div class="bg-panel border border-slate-700 rounded-lg p-3 flex gap-3 relative hover:border-col1/50 transition-colors group flex-1">
+                    <div class="w-[35%] flex flex-col justify-center border-r border-slate-700/50 pr-2">
+                        <span class="text-2xl font-extrabold text-white tracking-tight leading-none">~<span class="text-col1">3,500</span></span>
+                        <span class="text-[9px] text-col1/90 font-bold uppercase tracking-wide mt-1 leading-tight">FTEs<br>Reorganized</span>
+                    </div>
+                    <div class="w-[65%] flex flex-col justify-between pl-1">
+                        <div>
+                            <h3 class="text-xs font-bold text-white mb-1 leading-tight">CSO Vertical Reorganization</h3>
+                            <p class="text-[10px] text-slate-400 leading-snug line-clamp-2 mb-2">Orchestrated the end-to-end business and finance reorganization of the CSO vertical.</p>
+                        </div>
+                        <button onclick="openModal('placeholder')" class="w-fit text-[10px] bg-col1/10 text-col1 font-semibold px-2.5 py-1 rounded flex items-center gap-1 hover:bg-col1 hover:text-white transition-colors">
+                            View Full Workflow <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLUMN 2: Process Automation -->
+            <div class="flex flex-col gap-3">
+                <div class="bg-panel border border-slate-700 border-t-2 border-t-col2 rounded p-2.5 flex items-center gap-2 shadow shrink-0">
+                    <div class="bg-col2/10 p-1.5 rounded text-col2"><i data-lucide="cpu" class="w-4 h-4"></i></div>
+                    <h2 class="text-xs font-bold text-slate-100 uppercase tracking-wider">Process Automation &amp; AI Integration</h2>
+                </div>
+
+                <!-- PROJECT 1 -->
+                <div class="bg-panel border border-slate-700 rounded-lg p-3 flex gap-3 relative hover:border-col2/50 transition-colors group flex-1">
+                    <div class="w-[35%] flex flex-col justify-center border-r border-slate-700/50 pr-2">
+                        <span class="text-3xl font-extrabold text-col2 tracking-tight leading-none">30%</span>
+                        <span class="text-[9px] text-col2/90 font-bold uppercase tracking-wide mt-1 leading-tight">Less Manual<br>Intervention</span>
+                    </div>
+                    <div class="w-[65%] flex flex-col justify-between pl-1">
+                        <div>
+                            <h3 class="text-xs font-bold text-white mb-1 leading-tight">Automated PR Compliance via AI</h3>
+                            <p class="text-[10px] text-slate-400 leading-snug line-clamp-2 mb-2">Engineered an automated Purchase Requisition workflow leveraging AI for budget compliance.</p>
+                        </div>
+                        <button onclick="openModal('placeholder')" class="w-fit text-[10px] bg-col2/10 text-col2 font-semibold px-2.5 py-1 rounded flex items-center gap-1 hover:bg-col2 hover:text-navy transition-colors">
+                            View Full Workflow <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PROJECT 2 -->
+                <div class="bg-panel border border-slate-700 rounded-lg p-3 flex gap-3 relative hover:border-col2/50 transition-colors group flex-1">
+                    <div class="w-[35%] flex flex-col justify-center border-r border-slate-700/50 pr-2">
+                        <span class="text-3xl font-extrabold text-col2 tracking-tight leading-none">50%</span>
+                        <span class="text-[9px] text-col2/90 font-bold uppercase tracking-wide mt-1 leading-tight">Less Manual<br>Effort</span>
+                    </div>
+                    <div class="w-[65%] flex flex-col justify-between pl-1">
+                        <div>
+                            <h3 class="text-xs font-bold text-white mb-1 leading-tight">AI-Architected Financial Dashboards</h3>
+                            <p class="text-[10px] text-slate-400 leading-snug line-clamp-2 mb-2">Architected and standardized financial controlling dashboards using Devin AI.</p>
+                        </div>
+                        <button onclick="openModal('placeholder')" class="w-fit text-[10px] bg-col2/10 text-col2 font-semibold px-2.5 py-1 rounded flex items-center gap-1 hover:bg-col2 hover:text-navy transition-colors">
+                            View Full Workflow <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PROJECT 3 -->
+                <div class="bg-panel border border-slate-700 rounded-lg p-3 flex gap-3 relative hover:border-col2/50 transition-colors group flex-1">
+                    <div class="w-[35%] flex flex-col justify-center border-r border-slate-700/50 pr-2">
+                        <span class="text-2xl font-extrabold text-white tracking-tight leading-none">~7,300</span>
+                        <span class="text-[9px] text-col2/90 font-bold uppercase tracking-wide mt-1 leading-tight">HCs Reporting<br>Automated</span>
+                    </div>
+                    <div class="w-[65%] flex flex-col justify-between pl-1">
+                        <div>
+                            <h3 class="text-xs font-bold text-white mb-1 leading-tight">Automated Global Headcount Dashboard</h3>
+                            <p class="text-[10px] text-slate-400 leading-snug line-clamp-2 mb-2">Automated the company-wide headcount dashboard with HR and IT.</p>
+                        </div>
+                        <button onclick="openModal('placeholder')" class="w-fit text-[10px] bg-col2/10 text-col2 font-semibold px-2.5 py-1 rounded flex items-center gap-1 hover:bg-col2 hover:text-navy transition-colors">
+                            View Full Workflow <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLUMN 3: Budget Optimization -->
+            <div class="flex flex-col gap-3">
+                <div class="bg-panel border border-slate-700 border-t-2 border-t-col3 rounded p-2.5 flex items-center gap-2 shadow shrink-0">
+                    <div class="bg-col3/10 p-1.5 rounded text-col3"><i data-lucide="bar-chart-2" class="w-4 h-4"></i></div>
+                    <h2 class="text-xs font-bold text-slate-100 uppercase tracking-wider">Financial Controlling &amp; Budget Optimization</h2>
+                </div>
+
+                <!-- PROJECT 4 -->
+                <div class="bg-panel border border-slate-700 rounded-lg p-3 flex gap-3 relative hover:border-col3/50 transition-colors group flex-1">
+                    <div class="w-[35%] flex flex-col justify-center border-r border-slate-700/50 pr-2">
+                        <span class="text-3xl font-extrabold text-white tracking-tight leading-none">~<span class="text-col3">6</span>%</span>
+                        <span class="text-[9px] text-col3/90 font-bold uppercase tracking-wide mt-1 leading-tight">Lower Software<br>Spend</span>
+                    </div>
+                    <div class="w-[65%] flex flex-col justify-between pl-1">
+                        <div>
+                            <h3 class="text-xs font-bold text-white mb-1 leading-tight">IT Software License Optimization</h3>
+                            <p class="text-[10px] text-slate-400 leading-snug line-clamp-2 mb-2">Led an IT-finance initiative tightening usage tracking and renegotiating vendor contracts.</p>
+                        </div>
+                        <button onclick="openModal('placeholder')" class="w-fit text-[10px] bg-col3/10 text-col3 font-semibold px-2.5 py-1 rounded flex items-center gap-1 hover:bg-col3 hover:text-navy transition-colors">
+                            View Full Workflow <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PROJECT 5 -->
+                <div class="bg-panel border border-slate-700 rounded-lg p-3 flex gap-3 relative hover:border-col3/50 transition-colors group flex-1">
+                    <div class="w-[35%] flex flex-col justify-center border-r border-slate-700/50 pr-2">
+                        <span class="text-3xl font-extrabold text-white tracking-tight leading-none">~<span class="text-col3">8</span>%</span>
+                        <span class="text-[9px] text-col3/90 font-bold uppercase tracking-wide mt-1 leading-tight">Travel Cost<br>Reduction</span>
+                    </div>
+                    <div class="w-[65%] flex flex-col justify-between pl-1">
+                        <div>
+                            <h3 class="text-xs font-bold text-white mb-1 leading-tight">Enterprise Travel Cost Governance</h3>
+                            <p class="text-[10px] text-slate-400 leading-snug line-clamp-2 mb-2">Delivered a company-level reduction in travel costs by setting and governing targets.</p>
+                        </div>
+                        <button onclick="openModal('placeholder')" class="w-fit text-[10px] bg-col3/10 text-col3 font-semibold px-2.5 py-1 rounded flex items-center gap-1 hover:bg-col3 hover:text-navy transition-colors">
+                            View Full Workflow <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PROJECT 6 -->
+                <div class="bg-panel border border-slate-700 rounded-lg p-3 flex gap-3 relative hover:border-col3/50 transition-colors group flex-1">
+                    <div class="w-[35%] flex flex-col justify-center border-r border-slate-700/50 pr-2">
+                        <span class="text-2xl font-extrabold text-white tracking-tight leading-none">~€<span class="text-col3">140</span>M</span>
+                        <span class="text-[9px] text-col3/90 font-bold uppercase tracking-wide mt-1 leading-tight">Budget<br>Steered</span>
+                    </div>
+                    <div class="w-[65%] flex flex-col justify-between pl-1">
+                        <div>
+                            <h3 class="text-xs font-bold text-white mb-1 leading-tight">€140M Infotainment/UI Budget Steering</h3>
+                            <p class="text-[10px] text-slate-400 leading-snug line-clamp-2 mb-2">Led high-level budget discussions for the Infotainment and UI hubs, aligning stakeholders.</p>
+                        </div>
+                        <button onclick="openModal('placeholder')" class="w-fit text-[10px] bg-col3/10 text-col3 font-semibold px-2.5 py-1 rounded flex items-center gap-1 hover:bg-col3 hover:text-navy transition-colors">
+                            View Full Workflow <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- COMPACT PERSONAL PROJECT -->
+        <div class="bg-panel border border-slate-600 rounded-xl p-5 shadow-lg relative overflow-hidden flex items-center gap-6 shrink-0 mb-4">
+            <div class="absolute inset-0 z-0 flex justify-end pointer-events-none">
+                <div class="w-1/2 h-full relative">
+                    <div class="absolute inset-0 bg-gradient-to-r from-panel to-transparent z-10"></div>
+                    <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&q=80&w=800" alt="Financial Markets" class="w-full h-full object-cover opacity-10 mix-blend-screen grayscale">
+                </div>
+            </div>
+
+            <div class="relative z-10 w-1/4 shrink-0">
+                <div class="flex items-center gap-1.5 mb-1.5">
+                    <i data-lucide="star" class="w-4 h-4 text-accentYellow fill-accentYellow"></i>
+                    <span class="text-[11px] font-bold text-accentYellow tracking-wider uppercase">Personal Project</span>
+                </div>
+                <h3 class="text-base font-bold text-white leading-tight">Stock Screener &amp; Market Analysis</h3>
+            </div>
+
+            <div class="relative z-10 flex-1 flex items-center justify-center gap-4">
+                <div class="bg-navy border border-slate-600 px-4 py-2.5 rounded-lg shadow flex items-center gap-2">
+                    <i data-lucide="filter" class="w-4 h-4 text-col3"></i>
+                    <span class="text-xs font-semibold text-slate-100">Custom Screener</span>
+                </div>
+                <div class="w-8 border-t-2 border-dashed border-col3/50 relative">
+                    <i data-lucide="chevron-right" class="w-4 h-4 absolute -right-2 -top-2 text-col3"></i>
+                </div>
+                <div class="bg-navy border border-slate-600 px-4 py-2.5 rounded-lg shadow flex items-center gap-2">
+                    <i data-lucide="file-search" class="w-4 h-4 text-col3"></i>
+                    <span class="text-xs font-semibold text-slate-100">Fundamental Analysis</span>
+                </div>
+                <div class="w-8 border-t-2 border-dashed border-col3/50 relative">
+                    <i data-lucide="chevron-right" class="w-4 h-4 absolute -right-2 -top-2 text-col3"></i>
+                </div>
+                <div class="bg-navy border border-slate-600 px-4 py-2.5 rounded-lg shadow border-l-4 border-l-col3 flex items-center gap-3">
+                    <i data-lucide="trending-up" class="w-5 h-5 text-col3"></i>
+                    <div class="flex flex-col justify-center">
+                        <span class="text-xs font-semibold text-slate-100 leading-tight">Technical Analysis</span>
+                        <span class="text-[10px] text-col3 tracking-wider uppercase font-bold leading-tight mt-0.5">Understanding Trends</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative z-10 shrink-0">
+                <button onclick="openModal('placeholder')" class="inline-flex items-center gap-1.5 bg-white text-navy font-bold text-xs px-5 py-2.5 rounded hover:bg-slate-200 transition-colors shadow">
+                    View Workflow <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="mt-auto text-center shrink-0 flex flex-col items-center justify-center gap-3">
+            <div class="flex items-center gap-1.5 text-accentYellow/90">
+                <i data-lucide="alert-triangle" class="w-3 h-3"></i>
+                <p class="text-[11px] font-medium tracking-wide">
+                    Disclaimer: The workflows and data presented in this portfolio do not breach any confidentiality.
+                </p>
+            </div>
+            <div class="flex justify-center items-center gap-5 text-xs font-medium text-slate-400">
+                <span class="flex items-center gap-1.5">
+                    <i data-lucide="phone" class="w-3.5 h-3.5"></i> +91 7729883850
+                </span>
+                <span class="text-slate-700">|</span>
+                <a href="mailto:Kunal_agarwal@outlook.com" class="flex items-center gap-1.5 hover:text-teal transition-colors">
+                    <i data-lucide="mail" class="w-3.5 h-3.5"></i> Kunal_agarwal@outlook.com
+                </a>
+            </div>
+        </footer>
+
+    </div>
+
+
+    <!-- ========================================== -->
+    <!-- FULL-SCREEN MODAL OVERLAY (WORKFLOW VIEW)  -->
+    <!-- ========================================== -->
+    <div id="workflow-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center">
+        <!-- Dark Blur Backdrop -->
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal()"></div>
+        
+        <!-- Modal Content Container -->
+        <div id="modal-content" class="modal-enter w-[95%] h-[95vh] max-w-[1600px] bg-navy border border-slate-700 rounded-2xl shadow-2xl relative z-10 flex flex-col overflow-hidden">
+            
+            <!-- Sticky Top Bar -->
+            <div class="bg-panel border-b border-slate-700 px-6 py-4 flex justify-between items-center shrink-0">
+                <button onclick="closeModal()" class="flex items-center gap-2 text-sm font-semibold text-slate-400 hover:text-teal transition-colors group">
+                    <i data-lucide="arrow-left" class="w-4 h-4 group-hover:-translate-x-1 transition-transform"></i>
+                    Back to Portfolio
+                </button>
+                <button onclick="closeModal()" class="p-1 hover:bg-slate-700 rounded text-slate-400 hover:text-white transition-colors">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <!-- Dynamic Workflow Area (Scrollable) -->
+            <div id="workflow-container" class="flex-1 overflow-y-auto p-6 md:p-8 custom-scrollbar">
+                
+                <!-- SAC FORECASTING WORKFLOW DESIGN (Injected statically for this view) -->
+                <div class="flex flex-col h-full max-w-7xl mx-auto">
+                    <!-- Workflow Header -->
+                    <header class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-10 shrink-0">
+                        <div class="flex-1">
+                            <h1 class="text-3xl lg:text-4xl font-extrabold text-white tracking-tight mb-2">Enterprise SAC Forecasting <span class="text-teal">Rollout</span></h1>
+                            <p class="text-slate-400 text-sm font-medium tracking-wide">Project Workflow #7 &bull; Strategic Finance & Business Transformation</p>
+                        </div>
+                        
+                        <!-- Objective Box -->
+                        <div class="flex-1 max-w-xl bg-panel border border-slate-700 p-5 rounded-xl shadow-lg relative overflow-hidden group">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-teal/10 rounded-full blur-3xl -mr-16 -mt-16 transition-opacity opacity-50 group-hover:opacity-100"></div>
+                            <h3 class="text-teal font-bold text-xs uppercase tracking-widest mb-2 flex items-center gap-2">
+                                <i data-lucide="target" class="w-4 h-4"></i> Objective
+                            </h3>
+                            <p class="text-slate-300 text-sm leading-relaxed">
+                                Spearheaded the enterprise rollout of the SAP Analytics Cloud forecasting tool with Deloitte, accelerating forecast cycles ~15% and improving forecast accuracy.
+                            </p>
+                        </div>
+                    </header>
+
+                    <!-- Flowchart Grid Canvas -->
+                    <div class="flex-1 flex flex-col relative min-h-0 mb-10">
+                        <!-- Visual Connecting Line (Desktop) -->
+                        <div class="hidden lg:block absolute top-[45%] left-[10%] w-[80%] h-1 bg-slate-800 rounded-full z-0 transform -translate-y-1/2"></div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 h-full z-10">
+                            
+                            <!-- Column 1: Initiation & Inputs -->
+                            <section class="flex flex-col gap-4">
+                                <div class="bg-navy border border-slate-700 px-4 py-2 rounded-full mx-auto shadow-lg flex items-center gap-2 text-sm font-bold text-white shrink-0">
+                                    <span class="w-5 h-5 rounded-full bg-slate-800 text-teal flex items-center justify-center text-[10px]">1</span>
+                                    Initiation & Inputs
+                                </div>
+                                <div class="flex flex-col gap-4 justify-center flex-1">
+                                    <div class="bg-panel border border-slate-700 rounded-lg p-5 shadow-md flex items-start gap-4">
+                                        <div class="bg-navy p-2.5 rounded border border-slate-700 text-slate-400 shrink-0"><i data-lucide="globe" class="w-5 h-5"></i></div>
+                                        <div>
+                                            <h4 class="text-[10px] uppercase tracking-wider font-bold text-slate-500 mb-1">Global Input</h4>
+                                            <p class="text-sm font-semibold text-white">Multiple BUs & Regions</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-center -my-2 lg:hidden z-10"><i data-lucide="arrow-down" class="text-slate-600 w-4 h-4"></i></div>
+                                    <div class="bg-panel border border-slate-700 rounded-lg p-5 shadow-md flex items-start gap-4">
+                                        <div class="bg-navy p-2.5 rounded border border-slate-700 text-slate-400 shrink-0"><i data-lucide="table" class="w-5 h-5"></i></div>
+                                        <div>
+                                            <h4 class="text-[10px] uppercase tracking-wider font-bold text-slate-500 mb-1">Data Source</h4>
+                                            <p class="text-sm font-semibold text-white">Legacy SAP / Excel Data</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!-- Column 2: Processing & Logic -->
+                            <section class="flex flex-col gap-4 relative">
+                                <div class="hidden lg:flex absolute top-[45%] -left-5 transform -translate-y-1/2 w-8 h-8 bg-slate-800 rounded-full items-center justify-center z-20 border border-slate-700 text-slate-400"><i data-lucide="chevron-right" class="w-5 h-5"></i></div>
+                                <div class="bg-navy border border-slate-700 px-4 py-2 rounded-full mx-auto shadow-lg flex items-center gap-2 text-sm font-bold text-white shrink-0">
+                                    <span class="w-5 h-5 rounded-full bg-slate-800 text-teal flex items-center justify-center text-[10px]">2</span>
+                                    Processing & Logic
+                                </div>
+                                <div class="flex flex-col gap-4 justify-center flex-1">
+                                    <div class="bg-panel border-l-4 border-orangeAlert border-y border-r border-slate-700 rounded-lg p-5 shadow-md flex flex-col gap-2 relative overflow-hidden">
+                                        <div class="flex items-center gap-2">
+                                            <i data-lucide="alert-triangle" class="w-4 h-4 text-orangeAlert"></i>
+                                            <span class="text-[10px] uppercase tracking-wider font-bold text-orangeAlert">Current Bottleneck</span>
+                                        </div>
+                                        <p class="text-sm font-medium text-slate-300">Old Process: Manual data consolidation, high latency, and error-prone aggregation.</p>
+                                    </div>
+                                    <div class="flex justify-center -my-2 z-10"><i data-lucide="arrow-down" class="text-slate-600 w-4 h-4"></i></div>
+                                    <div class="bg-panel border-2 border-teal rounded-lg p-5 shadow-[0_0_15px_rgba(20,184,166,0.15)] flex flex-col gap-2 relative overflow-hidden group">
+                                        <i data-lucide="cloud-cog" class="absolute -bottom-2 -right-2 w-16 h-16 text-teal opacity-10 group-hover:opacity-20 transition-opacity"></i>
+                                        <div class="flex items-center gap-2 relative z-10">
+                                            <span class="bg-teal/20 text-teal text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded">Automated Solution</span>
+                                        </div>
+                                        <p class="text-sm font-semibold text-white relative z-10 leading-snug">SAC Implementation: Real-time data synchronization and centralized predictive models.</p>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!-- Column 3: System Actions -->
+                            <section class="flex flex-col gap-4 relative">
+                                <div class="hidden lg:flex absolute top-[45%] -left-5 transform -translate-y-1/2 w-8 h-8 bg-slate-800 rounded-full items-center justify-center z-20 border border-slate-700 text-slate-400"><i data-lucide="chevron-right" class="w-5 h-5"></i></div>
+                                <div class="bg-navy border border-slate-700 px-4 py-2 rounded-full mx-auto shadow-lg flex items-center gap-2 text-sm font-bold text-white shrink-0">
+                                    <span class="w-5 h-5 rounded-full bg-slate-800 text-teal flex items-center justify-center text-[10px]">3</span>
+                                    System Actions
+                                </div>
+                                <div class="flex flex-col gap-4 justify-center flex-1">
+                                    <div class="bg-panel border border-slate-700 rounded-lg p-5 shadow-md flex items-start gap-4">
+                                        <div class="bg-navy p-2.5 rounded border border-slate-700 text-slate-400 shrink-0"><i data-lucide="users" class="w-5 h-5"></i></div>
+                                        <div>
+                                            <h4 class="text-[10px] uppercase tracking-wider font-bold text-slate-500 mb-1">Partnership Execution</h4>
+                                            <p class="text-sm font-semibold text-white">Deloitte Implementation & Testing</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-center -my-2 lg:hidden z-10"><i data-lucide="arrow-down" class="text-slate-600 w-4 h-4"></i></div>
+                                    <div class="bg-panel border border-slate-700 rounded-lg p-5 shadow-md flex items-start gap-4">
+                                        <div class="bg-navy p-2.5 rounded border border-slate-700 text-slate-400 shrink-0"><i data-lucide="network" class="w-5 h-5"></i></div>
+                                        <div>
+                                            <h4 class="text-[10px] uppercase tracking-wider font-bold text-slate-500 mb-1">Backend Infrastructure</h4>
+                                            <p class="text-sm font-semibold text-white leading-snug">Cloud Data Processing & Mapping</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!-- Column 4: Reporting & Closure -->
+                            <section class="flex flex-col gap-4 relative">
+                                <div class="hidden lg:flex absolute top-[45%] -left-5 transform -translate-y-1/2 w-8 h-8 bg-panel rounded-full items-center justify-center z-20 border border-teal text-teal shadow-[0_0_10px_rgba(20,184,166,0.3)]"><i data-lucide="chevron-right" class="w-5 h-5"></i></div>
+                                <div class="bg-navy border border-slate-700 px-4 py-2 rounded-full mx-auto shadow-lg flex items-center gap-2 text-sm font-bold text-white shrink-0">
+                                    <span class="w-5 h-5 rounded-full bg-slate-800 text-teal flex items-center justify-center text-[10px]">4</span>
+                                    Reporting & Closure
+                                </div>
+                                <div class="flex flex-col gap-4 justify-center flex-1">
+                                    <div class="bg-panel border-l-4 border-slate-600 hover:border-teal border-y border-r border-slate-700 rounded-lg p-5 shadow-md flex items-start gap-4 transition-colors">
+                                        <div class="bg-navy p-2.5 rounded border border-slate-700 text-teal shrink-0"><i data-lucide="layout-dashboard" class="w-5 h-5"></i></div>
+                                        <div>
+                                            <h4 class="text-[10px] uppercase tracking-wider font-bold text-slate-500 mb-1">Final Output</h4>
+                                            <p class="text-sm font-semibold text-white">Unified Global Forecast Dashboard</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-center -my-2 lg:hidden z-10"><i data-lucide="arrow-down" class="text-slate-600 w-4 h-4"></i></div>
+                                    <div class="bg-panel border-l-4 border-slate-600 hover:border-teal border-y border-r border-slate-700 rounded-lg p-5 shadow-md flex items-start gap-4 transition-colors">
+                                        <div class="bg-navy p-2.5 rounded border border-slate-700 text-slate-400 shrink-0"><i data-lucide="trending-up" class="w-5 h-5"></i></div>
+                                        <div>
+                                            <h4 class="text-[10px] uppercase tracking-wider font-bold text-slate-500 mb-1">Strategic Capability</h4>
+                                            <p class="text-sm font-semibold text-white">Real-time Scenario Planning</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+
+                    <!-- Workflow Footer Metrics -->
+                    <footer class="mt-auto pt-6 border-t border-slate-800 shrink-0">
+                        <h4 class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-4 text-center lg:text-left">Key Impact Metrics</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="bg-panel border border-slate-700 rounded-xl p-4 flex items-center gap-4 shadow hover:border-teal/50 transition-colors">
+                                <div class="bg-navy border border-slate-600 rounded-lg p-3 shrink-0 text-teal"><i data-lucide="clock" class="w-6 h-6"></i></div>
+                                <div>
+                                    <p class="text-xs text-slate-400 font-medium mb-0.5">Cycle Time</p>
+                                    <p class="text-xl font-bold text-white leading-none">~15% Faster Cycles</p>
+                                </div>
+                            </div>
+                            <div class="bg-panel border border-slate-700 rounded-xl p-4 flex items-center gap-4 shadow hover:border-teal/50 transition-colors">
+                                <div class="bg-navy border border-slate-600 rounded-lg p-3 shrink-0 text-teal"><i data-lucide="target" class="w-6 h-6"></i></div>
+                                <div>
+                                    <p class="text-xs text-slate-400 font-medium mb-0.5">Forecast Quality</p>
+                                    <p class="text-xl font-bold text-white leading-none">High Accuracy</p>
+                                </div>
+                            </div>
+                            <div class="bg-panel border border-slate-700 rounded-xl p-4 flex items-center gap-4 shadow hover:border-teal/50 transition-colors">
+                                <div class="bg-navy border border-slate-600 rounded-lg p-3 shrink-0 text-teal"><i data-lucide="cpu" class="w-6 h-6"></i></div>
+                                <div>
+                                    <p class="text-xs text-slate-400 font-medium mb-0.5">Core Systems</p>
+                                    <p class="text-lg font-bold text-white leading-none">SAP Analytics Cloud</p>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+                <!-- END SAC FORECASTING WORKFLOW DESIGN -->
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Initialization and Modal Logic -->
+    <script>
+        // Render Icons
+        lucide.createIcons();
+
+        // Modal Logic
+        const modal = document.getElementById('workflow-modal');
+        const modalContent = document.getElementById('modal-content');
+
+        function openModal(projectId) {
+            // Un-hide the modal
+            modal.classList.remove('hidden');
+            
+            // Prevent background scrolling
+            document.body.style.overflow = 'hidden';
+            
+            // Apply enter animation classes
+            modalContent.classList.remove('modal-exit', 'modal-exit-active');
+            modalContent.classList.add('modal-enter');
+            
+            // Trigger reflow to restart animation
+            void modalContent.offsetWidth; 
+            
+            modalContent.classList.add('modal-enter-active');
+
+            // NOTE: In a fully fleshed out version, you would use `projectId` to 
+            // dynamically inject the correct workflow HTML into #workflow-container.
+            // For now, the SAC Rollout is statically built into the modal to demonstrate the design.
+            if (projectId !== 'sac-rollout') {
+                console.log("Opening placeholder workflow for:", projectId);
+                // Future integration: update content based on projectId
+            }
+        }
+
+        function closeModal() {
+            // Apply exit animation classes
+            modalContent.classList.remove('modal-enter', 'modal-enter-active');
+            modalContent.classList.add('modal-exit');
+            
+            // Trigger reflow
+            void modalContent.offsetWidth;
+            
+            modalContent.classList.add('modal-exit-active');
+
+            // Wait for animation to finish before hiding
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = ''; // Restore scrolling
+            }, 200); 
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape" && !modal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
